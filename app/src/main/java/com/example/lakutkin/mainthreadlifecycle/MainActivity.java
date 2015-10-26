@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 	public static final String TAG = "MainThreadLifecycle";
+	private final MainLooperSpy mainLooperSpy = new MainLooperSpy();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 		if (savedInstanceState == null) {
 			Log.d(TAG, "Requesting orientation change");
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			mainLooperSpy.dumpQueue();
 		}
 	}
 
