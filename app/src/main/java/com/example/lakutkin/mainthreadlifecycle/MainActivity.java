@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 				}
 			});
 			Log.d(TAG, "Requesting orientation change");
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 			handler.post(new Runnable() {
 				public void run() {
 					Log.d(TAG, "Posted after requesting orientation change");
@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 	protected void onPause() {
 		super.onPause();
 		Log.d(TAG, "onPause()");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.d(TAG, "onStop()");
 	}
 
 	protected void onDestroy() {
