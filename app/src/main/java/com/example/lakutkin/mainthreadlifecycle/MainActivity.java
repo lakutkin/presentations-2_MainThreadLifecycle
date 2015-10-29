@@ -2,6 +2,8 @@ package com.example.lakutkin.mainthreadlifecycle;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
 		Log.d(TAG, "onCreate()");
 		if (savedInstanceState == null) {
+			Handler handler = new Handler(Looper.getMainLooper());
+			handler.post(new Runnable() {
+				public void run() {
+					Log.d(TAG, "Posted before requesting orientation change");
+				}
+			});
 			Log.d(TAG, "Requesting orientation change");
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			handler.post(new Runnable() {
+				public void run() {
+					Log.d(TAG, "Posted after requesting orientation change");
+				}
+			});
 			mainLooperSpy.dumpQueue();
 		}
 	}
