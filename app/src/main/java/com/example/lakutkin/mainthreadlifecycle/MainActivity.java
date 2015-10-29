@@ -51,12 +51,14 @@ public class MainActivity extends AppCompatActivity {
 	protected void onPause() {
 		super.onPause();
 		Log.d(TAG, "onPause()");
+		mainLooperSpy.dumpQueue();
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
 		Log.d(TAG, "onStop()");
+		mainLooperSpy.dumpQueue();
 	}
 
 	protected void onDestroy() {
