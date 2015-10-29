@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 		Log.d(TAG, "onCreate()");
 		if (savedInstanceState == null) {
 			Handler handler = new Handler(Looper.getMainLooper());
+			handler.sendMessage(Message.obtain());
 			handler.post(new Runnable() {
 				public void run() {
 					Log.d(TAG, "Posted before requesting orientation change");
@@ -51,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
 	protected void onPause() {
 		super.onPause();
 		Log.d(TAG, "onPause()");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		mainLooperSpy.dumpQueue();
 	}
 
